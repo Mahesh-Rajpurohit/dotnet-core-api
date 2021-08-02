@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: mahesh-dotnet-core-app
+  name: mahesh-dotnet-core-api-app
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: mahesh-dotnet-core-app
+      app: mahesh-dotnet-core-api-app
   template:
     metadata:
       labels:
-        app: mahesh-dotnet-core-app
+        app: mahesh-dotnet-core-api-app
     spec:
       containers:
-        - name: dotnetapp
-          image: 9535236403/dotnet-docker-demo:dotnet-docker-demo
+        - name: dotnetapi
+          image: 9535236403/dotnet-api-docker-demo:dotnet-api-docker-demo
           ports:
             - containerPort: 8080
           env:
@@ -24,11 +24,11 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: mahesh-dotnet-core-app
+  name: mahesh-dotnet-core-api-app
 spec:
   type: NodePort
   ports:
     - port: 80
       targetPort: 8080
   selector:
-    app: mahesh-dotnet-core-app
+    app: mahesh-dotnet-core-api-app
